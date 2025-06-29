@@ -1,0 +1,61 @@
+{% extends "inicio/encabezado.html" %}
+{% block titulo %}Cursos Disponibles{% endblock %}
+
+{% block imagen %}
+    {% load static %}
+    {% static 'inicio/images/literature.png'%}
+{% endblock %}
+
+{% block pag %}Cursos{% endblock %}
+
+{% block encabezado %}
+<div class="page-header">
+    <div class="page-title">
+        <h3>Cursos <small>Todos nuestros cursos disponibles</small></h3>
+    </div>
+</div>
+{% endblock %}
+
+{% block contenido %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Lista de Cursos</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Curso</th>
+                                    <th>Descripción</th>
+                                    <th>Duración</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Bases de Datos</td>
+                                    <td>Fundamentos de diseño y administración de bases de datos relacionales</td>
+                                    <td>40 horas</td>
+                                </tr>
+                                <tr>
+                                    <td>Java</td>
+                                    <td>Programación orientada a objetos con Java</td>
+                                    <td>60 horas</td>
+                                </tr>
+                                <tr>
+                                    <td>JavaScript</td>
+                                    <td>Desarrollo web frontend con JavaScript moderno</td>
+                                    <td>50 horas</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
