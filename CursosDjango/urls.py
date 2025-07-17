@@ -16,11 +16,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from contenido import views
+from cursos import views as views_curso
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.principal, name="principal"),
     path('contacto/', views.contacto, name="contacto"),
-    path('cursos/', views.cursos, name="cursos"),
+    path('cursos/', views_curso.curso, name="cursos"),
+    path('registrar/',views_curso.registrar_curso,name="Registrar"),
+    path('eliminarCurso/<int:id>/',views_curso.eliminarCurso, name="Eliminar"),
+    path('formEditarCurso/<int:id>/',views_curso.consultarCursoIndividual, name='ConsultaIndividual'),
+    path('editarCurso/<int:id>/',views_curso.editarCurso,name='Editar'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

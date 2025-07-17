@@ -30,26 +30,36 @@
                             <thead>
                                 <tr>
                                     <th>Curso</th>
-                                    <th>Descripción</th>
-                                    <th>Duración</th>
+                                    <th>Nivel</th>
+                                    <th>Duracion(semanas)</th>
+                                    <th>Precio(dls)</th>
+                                    <th>Estado</th>
+                                    <th>Imagen</th>
+                                    <th>Tiene Certificacion?</th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for curso in cursos %}
                                 <tr>
-                                    <td>Bases de Datos</td>
-                                    <td>Fundamentos de diseño y administración de bases de datos relacionales</td>
-                                    <td>40 horas</td>
+                                    <td class="text-semibold">{{ curso.titulo }}</td>
+                                    <td class="text-semibold">{{ curso.nivel }}</td>
+                                    <td class="text-semibold">{{ curso.duracion_semanas }}</td>
+                                    <td class="text-semibold">{{ curso.precio }}</td>
+                                    <td class="text-semibold">{{ curso.estado }}</td>
+                                    <td class="text-center">
+                                        <img src="{{ curso.imagen.url }}" alt="{{ curso.titulo }}" class="img-thumbnail" style="max-width: 100px;">
+                                    </td>
+                                    <td class="text-semibold">{{ curso.es_certificado }}</td>
+                                    <td class="text-center">
+                                        <a href="{%url 'Eliminar' curso.id%}">Eliminar</a>
+                                    </td>
+                                    <td class=>
+                                        <a href="">Editar</a>
+                                    </td>
                                 </tr>
-                                <tr>
-                                    <td>Java</td>
-                                    <td>Programación orientada a objetos con Java</td>
-                                    <td>60 horas</td>
-                                </tr>
-                                <tr>
-                                    <td>JavaScript</td>
-                                    <td>Desarrollo web frontend con JavaScript moderno</td>
-                                    <td>50 horas</td>
-                                </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

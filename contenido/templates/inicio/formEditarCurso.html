@@ -1,0 +1,122 @@
+{% extends "inicio/encabezado.html" %}
+{% block titulo %}Editar Curso{% endblock %}
+
+{% block imagen %}
+    {% load static %}
+    {% static 'inicio/images/edit.png' %}
+{% endblock %}
+
+{% block pag %}Editar Curso{% endblock %}
+
+{% block encabezado %}
+<h3>Editar Curso: {{curso.titulo}}
+    <small>Modifica los campos necesarios</small>
+</h3>
+{% endblock %}
+
+{% block contenido %}
+<!-- Formulario -->
+<form class="form-horizontal" action="{% url 'Editar' curso.id %}" method="POST" role="form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Título:</label>
+                <div class="col-sm-10">
+                    <input name="titulo" type="text" class="form-control" value="{{curso.titulo}}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Descripción:</label>
+                <div class="col-sm-10">
+                    <textarea name="descripcion" class="form-control" rows="5" required>{{curso.descripcion}}</textarea>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Nivel:</label>
+                <div class="col-sm-10">
+                    <select name="nivel" class="form-control" required>
+                        <option value="Principiante" {% if curso.nivel == 'Principiante' %}selected{% endif %}>Principiante</option>
+                        <option value="Intermedio" {% if curso.nivel == 'Intermedio' %}selected{% endif %}>Intermedio</option>
+                        <option value="Avanzado" {% if curso.nivel == 'Avanzado' %}selected{% endif %}>Avanzado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Duración (semanas):</label>
+                <div class="col-sm-10">
+                    <input name="duracion_semanas" type="number" class="form-control" min="1" value="{{curso.duracion_semanas}}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Precio (MXN):</label>
+                <div class="col-sm-10">
+                    <input name="precio" type="number" step="0.01" class="form-control" min="0" value="{{curso.precio}}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Cupos disponibles:</label>
+                <div class="col-sm-10">
+                    <input name="cupos_disponibles" type="number" class="form-control" min="0" value="{{curso.cupos_disponibles}}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Estado:</label>
+                <div class="col-sm-10">
+                    <select name="estado" class="form-control" required>
+                        <option value="disponible" {% if curso.estado == 'disponible' %}selected{% endif %}>Disponible</option>
+                        <option value="completo" {% if curso.estado == 'completo' %}selected{% endif %}>Completo</option>
+                        <option value="cancelado" {% if curso.estado == 'cancelado' %}selected{% endif %}>Cancelado</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Imagen actual:</label>
+                <div class="col-sm-10">
+                    {% if curso.imagen %}
+                        <img src="{{ curso.imagen.url }}" alt="{{ curso.titulo }}" style="max-height: 100px;">
+                    {% else %}
+                        <p>No hay imagen cargada</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Cambiar imagen:</label>
+                <div class="col-sm-10">
+                    <input name="imagen" type="file" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Certificado:</label>
+                <div class="col-sm-10">
+                    <input name="es_certificado" type="checkbox" class="form-check-input" {% if curso.es_certificado %}checked{% endif %}>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label text-right">Profesor:</label>
+                <div class="col-sm-10">
+                    <input name="profesor" type="text" class="form-control" value="{{curso.profesor}}" required>
+                </div>
+            </div>
+
+            <div class="form-actions text-right">
+                <input type="submit" value="Guardar Cambios" class="btn btn-primary">
+                <a href="{% url 'lista_cursos' %}" class="btn btn-default">Cancelar</a>
+            </div>
+
+        </div>
+    </div>
+</form>
+<!-- Fin del Formulario -->
+{% endblock %}
