@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -119,7 +120,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-mx'
 
 TIME_ZONE = 'UTC'
 
@@ -151,4 +152,9 @@ CKEDITOR_CONFIGS = {
             ['RemoveFormat', 'Source']
         ]
     }
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "brand_colour": "navbar-orange",
+    "sidebar": "sidebar-dark-orange",
 }
